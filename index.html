@@ -1,25 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Drop Game</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Water Drop Game</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <div class="game-wrapper">
-        <h1 class="game-title">Water Drop</h1>
-        <p class="game-tagline">Catch the good drops, avoid the bad ones!</p>
-        <div class="score-panel">
-            <div class="score">Score: <span id="score">0</span></div>
-            <div class="timer">Time: <span id="time">30</span>s</div>
-            <button id="start-btn">Start Game</button>
-        </div>
-        
-        <div id="game-container">
-        </div>
+  <div class="game-wrapper">
+    <header class="branding">
+      <img src="cw_logo-horizontal.png" alt="charity: water logo" class="logo" />
+    </header>
+
+    <h1 class="game-title">WATER DROP</h1>
+
+    <div class="drop-display">
+      <div class="drop" data-index="0"></div>
+      <div class="drop" data-index="1"></div>
+      <div class="drop" data-index="2"></div>
     </div>
-    
-    <script src="script.js"></script>
+
+    <div class="score-panel">
+      <div class="score-btn">
+        <button class="score-box">SCORE: <span id="score">0</span></button>
+      </div>
+    </div>
+
+    <p class="feedback" id="feedback"></p>
+
+    <button id="play-again" class="play-again-btn" style="display: none;">PLAY AGAIN</button>
+
+    <script>
+      let score = 0;
+      let gameOver = false;
+      const scoreDisplay = document.getElementById("score");
+      const feedback = document.getElementById("feedback");
+      const playAgainBtn = document.getElementById("play-again");
+      const drops = document.querySelectorAll(".drop");
+
+      let badIndex = Math.floor(Math.random() * drops.length);
+
+      function resetGame() {
+        score = 0;
+        gameOver = false;
+        scoreDisplay.textContent = score;
+        feedback.textContent = "";
+        playAgainBtn.style.display = "none";
+        drops.forEach(drop => {
+          drop.classList.remove("bad");
+          drop.textContent = "";
+        });
+        badIndex = Math.floor(Math.random() * drops.length);
+      }
+
+      drops.forEach((drop, index) => {
+        drop.addEventListener("click", () => {
+          if (gameOver) return;
+
+          if (index === badIndex) {
+            drop.classList.add("bad");
+            drop.textContent = "X";
+            feedback.textContent = "Oops! That was polluted water!";
+            gameOver = true;
+            playAgainBtn.style.display = "inline-block";
+          } else {
+            score++;
+            scoreDisplay.textContent = score;
+            feedback.textContent = "";
+          }
+        });
+      });
+
+      playAgainBtn.addEventListener("click", resetGame);
+    </script>
+  </div>
 </body>
 </html>
