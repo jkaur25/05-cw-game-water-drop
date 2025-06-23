@@ -9,7 +9,7 @@
 <body>
   <div class="game-wrapper">
     <header class="branding">
-      <img src="img/cw_logo-horizontal.png" alt="charity: water - logo" class="logo" />
+      <img src="img/cw_logo-horizontal.png" alt="charity: water logo" class="logo" />
     </header>
 
     <h1 class="game-title">WATER DROP</h1>
@@ -53,6 +53,14 @@
         badIndex = Math.floor(Math.random() * drops.length);
       }
 
+      function updateBadDrop() {
+        drops.forEach(drop => {
+          drop.classList.remove("bad");
+          drop.textContent = "";
+        });
+        badIndex = Math.floor(Math.random() * drops.length);
+      }
+
       drops.forEach((drop, index) => {
         drop.addEventListener("click", () => {
           if (gameOver) return;
@@ -67,6 +75,7 @@
             score++;
             scoreDisplay.textContent = score;
             feedback.textContent = "";
+            updateBadDrop();
           }
         });
       });
