@@ -1,8 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #fff;
-  font-family: Arial, sans-serif;
+  background: #fff;
+  font-family: 'Open Sans', Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,46 +10,48 @@ body {
 }
 
 .game-wrapper {
-  text-align: center;
+  width: 90%;
   max-width: 500px;
-  padding: 20px;
+  text-align: center;
 }
 
 .branding .logo {
-  height: 40px;
+  width: 200px;
   margin-bottom: 10px;
 }
 
 .game-title {
   font-size: 32px;
-  font-weight: bold;
-  color: #131313;
-  margin-bottom: 10px;
+  margin: 10px 0;
+}
+
+.difficulty-panel {
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  font-size: 16px;
 }
 
 .drop-display {
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  justify-content: space-around;
   margin: 20px 0;
 }
 
 .drop {
-  width: 50px;
-  height: 70px;
-  background-color: rgb(119, 168, 187);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  width: 60px;
+  height: 80px;
+  background: rgb(119, 168, 187);
+  border-radius: 50% 50% 50% 50%/60% 60% 40% 40%;
   position: relative;
+  cursor: pointer;
 }
 
-.bad::before {
-  content: "X";
-  color: black;
-  font-size: 24px;
-  font-weight: bold;
-  position: absolute;
-  top: 14px;
-  left: 18px;
+.drop:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s;
 }
 
 .score-panel {
@@ -57,31 +59,55 @@ body {
 }
 
 .score-box {
-  background-color: #FFC907;
+  background-color: #ffc907;
   border: none;
-  padding: 12px 24px;
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: 20px;
   font-weight: bold;
-  border-radius: 6px;
-  cursor: default;
+  border-radius: 8px;
 }
 
 .feedback {
-  font-size: 16px;
-  color: #222;
-  margin: 10px 0 20px;
+  font-size: 18px;
+  color: #333;
+  margin: 15px 0;
+  min-height: 24px;
 }
 
 .play-again-btn {
-  background-color: #FFC907;
+  background: #ffc907;
   border: none;
-  padding: 12px 24px;
+  padding: 12px 30px;
   font-size: 18px;
-  font-weight: bold;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
 .play-again-btn:hover {
-  background-color: #e6b800;
+  background: #e6b800;
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 15px;
+  background: #f9f9f9;
+  font-size: 14px;
+  text-align: center;
+  border-top: 1px solid #ddd;
+}
+
+.footer a {
+  color: #2e9df7;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .drop-display {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
