@@ -108,6 +108,7 @@ body {
 @media (max-width: 600px) {
   .drop-display {
     flex-direction: column;
-    gap: 15px;
+    align-items: center;   /* center drops horizontally */
+    gap: 20px;             /* space between drops */
   }
 }
